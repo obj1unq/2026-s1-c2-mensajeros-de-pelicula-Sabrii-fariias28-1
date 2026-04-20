@@ -1,0 +1,33 @@
+import mensajeria.*
+import empleados.*
+
+describe "Sistema de mensajeria" {
+  test "El paquete no esta pago, no se puede entregar" {
+    paquete.cambiarEstado(false)
+    neo.cambiarCredito(true)
+
+    assert.notThat(mensajeria.puedeEntregar(neo, matrix))
+  }
+  test "Jean si puede entregar a la matrix" {
+    paquete.cambiarEstado(true)
+
+    assert.that(mensajeria.puedeEntregar(jeanGray, matrix))
+  }
+  test "Sara con camion + acoplado no puede ir a Brooklyn" {
+    paquete.cambiarEstado(true)
+
+    camion.cambiarAcoplados(1)
+    saraConnor.cambiarVehiculo(camion)
+    saraConnor.cambiarPesoPropio(70)
+
+    assert.notThat(mensajeria.puedeEntregar(saraConnor, brooklyn))
+  }
+  test "Sara con moto si puede ir a Brooklyn" {
+    paquete.cambiarEstado(true)
+
+    saraConnor.cambiarVehiculo(moto)
+    saraConnor.cambiarPesoPropio(70)
+
+    assert.that(mensajeria.puedeEntregar(saraConnor, brooklyn))
+  }
+}
