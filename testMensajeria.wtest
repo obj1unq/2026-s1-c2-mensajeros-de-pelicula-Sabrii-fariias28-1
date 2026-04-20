@@ -6,7 +6,7 @@ describe "Sistema de mensajeria" {
     paquete.cambiarEstado(false)
     neo.cambiarCredito(true)
 
-    assert.that(!mensajeria.puedeEntregar(neo, matrix))
+    assert.notThat(mensajeria.puedeEntregar(neo, matrix))
   }
   test "Jean si puede entregar a la matrix" {
     paquete.cambiarEstado(true)
@@ -20,7 +20,7 @@ describe "Sistema de mensajeria" {
     saraConnor.cambiarVehiculo(camion)
     saraConnor.cambiarPesoPropio(70)
 
-    assert.that(!mensajeria.puedeEntregar(saraConnor, brooklyn))
+    assert.notThat(mensajeria.puedeEntregar(saraConnor, brooklyn))
   }
   test "Sara con moto si puede ir a Brooklyn" {
     paquete.cambiarEstado(true)
